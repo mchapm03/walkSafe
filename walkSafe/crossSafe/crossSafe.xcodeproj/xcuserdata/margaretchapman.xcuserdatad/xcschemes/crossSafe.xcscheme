@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1606B7401C67FA520022A148"
-               BuildableName = "walkSafe.app"
-               BlueprintName = "walkSafe"
-               ReferencedContainer = "container:walkSafe.xcodeproj">
+               BlueprintIdentifier = "16BBFDE31C6A40350056664D"
+               BuildableName = "crossSafe.app"
+               BlueprintName = "crossSafe"
+               ReferencedContainer = "container:crossSafe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1606B7401C67FA520022A148"
-            BuildableName = "walkSafe.app"
-            BlueprintName = "walkSafe"
-            ReferencedContainer = "container:walkSafe.xcodeproj">
+            BlueprintIdentifier = "16BBFDE31C6A40350056664D"
+            BuildableName = "crossSafe.app"
+            BlueprintName = "crossSafe"
+            ReferencedContainer = "container:crossSafe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1606B7401C67FA520022A148"
-            BuildableName = "walkSafe.app"
-            BlueprintName = "walkSafe"
-            ReferencedContainer = "container:walkSafe.xcodeproj">
+            BlueprintIdentifier = "16BBFDE31C6A40350056664D"
+            BuildableName = "crossSafe.app"
+            BlueprintName = "crossSafe"
+            ReferencedContainer = "container:crossSafe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1606B7401C67FA520022A148"
-            BuildableName = "walkSafe.app"
-            BlueprintName = "walkSafe"
-            ReferencedContainer = "container:walkSafe.xcodeproj">
+            BlueprintIdentifier = "16BBFDE31C6A40350056664D"
+            BuildableName = "crossSafe.app"
+            BlueprintName = "crossSafe"
+            ReferencedContainer = "container:crossSafe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

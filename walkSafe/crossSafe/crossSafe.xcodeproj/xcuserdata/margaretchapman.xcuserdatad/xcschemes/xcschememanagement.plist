@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>walkSafe.xcscheme</key>
+		<key>crossSafe.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1606B7401C67FA520022A148</key>
+		<key>16BBFDE31C6A40350056664D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

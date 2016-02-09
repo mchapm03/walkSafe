@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  walkSafe
+//  crossSafe
 //
-//  Created by Margaret Chapman on 2/7/16.
-//  Copyright © 2016 cs.tufts. All rights reserved.
+//  Created by Margaret Chapman on 2/9/16.
+//  Copyright © 2016 Tufts. All rights reserved.
 //
 
 import UIKit
