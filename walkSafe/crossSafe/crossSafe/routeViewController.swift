@@ -14,11 +14,11 @@ class routeViewController: UIViewController {
     @IBOutlet weak var routeLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
     
-    var kid : Kid?
+    var route: Route?
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let kid = kid {
-            navigationItem.title = kid.name
+        if let route = route {
+            navigationItem.title = route.date.description
         }
     }
 

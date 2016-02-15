@@ -16,10 +16,10 @@ class Route {
     var greenIntersections: Int?
     var yellowIntersections: Int?
     var redIntersections: Int?
-    var routeCoords: MKPolyline
+    var routeCoords: MKPolyline?
     
-    init(time: NSDate, routeCoords: MKPolyline){
+    init(time: NSDate){
         self.date = time
-        self.routeCoords = routeCoords
+        //self.routeCoords = routeCoords
     }
 }

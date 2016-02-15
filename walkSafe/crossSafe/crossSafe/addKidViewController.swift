@@ -25,7 +25,7 @@ class addKidViewController: UIViewController, UITextFieldDelegate {
         kidNameInput.delegate = self
         kidPhoneInput.delegate = self
         
-        // Enable the Save button only if the text field has a valid Meal name.
+        // Enable the Save button only if the text field has a valid input
         checkValidInput()
 
     }

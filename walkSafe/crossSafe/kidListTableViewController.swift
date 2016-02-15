@@ -94,7 +94,7 @@ class kidListTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // TODO: add a segue to the confirm kid page if the kid.isConfirmed == false
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowKidRoutes" {

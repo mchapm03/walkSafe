@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		16605A151C70E56C00DD1606 /* kidDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16605A141C70E56C00DD1606 /* kidDetails.swift */; };
 		16605A171C7102A600DD1606 /* route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16605A161C7102A600DD1606 /* route.swift */; };
+		16605A191C7108C100DD1606 /* kidStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16605A181C7108C100DD1606 /* kidStatistics.swift */; };
+		16605A1B1C71104300DD1606 /* routeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16605A1A1C71104300DD1606 /* routeTableViewCell.swift */; };
+		16605A1D1C7112A000DD1606 /* routeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16605A1C1C7112A000DD1606 /* routeTableViewController.swift */; };
+		16605A1F1C720FA500DD1606 /* ConfirmKidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16605A1E1C720FA500DD1606 /* ConfirmKidViewController.swift */; };
 		16949E7C1C6AB701001A7D0E /* childViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16949E7B1C6AB701001A7D0E /* childViewController.swift */; };
 		16949E801C6BA17B001A7D0E /* routeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16949E7F1C6BA17B001A7D0E /* routeViewController.swift */; };
 		16949E821C6BA20D001A7D0E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16949E811C6BA20D001A7D0E /* MapKit.framework */; };
@@ -26,6 +30,10 @@
 /* Begin PBXFileReference section */
 		16605A141C70E56C00DD1606 /* kidDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kidDetails.swift; sourceTree = "<group>"; };
 		16605A161C7102A600DD1606 /* route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = route.swift; sourceTree = "<group>"; };
+		16605A181C7108C100DD1606 /* kidStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kidStatistics.swift; sourceTree = "<group>"; };
+		16605A1A1C71104300DD1606 /* routeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = routeTableViewCell.swift; sourceTree = "<group>"; };
+		16605A1C1C7112A000DD1606 /* routeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = routeTableViewController.swift; sourceTree = "<group>"; };
+		16605A1E1C720FA500DD1606 /* ConfirmKidViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmKidViewController.swift; sourceTree = "<group>"; };
 		16949E7B1C6AB701001A7D0E /* childViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = childViewController.swift; sourceTree = "<group>"; };
 		16949E7F1C6BA17B001A7D0E /* routeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = routeViewController.swift; sourceTree = "<group>"; };
 		16949E811C6BA20D001A7D0E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -77,11 +85,15 @@
 				16BBFDE71C6A40350056664D /* AppDelegate.swift */,
 				16BBFDE91C6A40350056664D /* ViewController.swift */,
 				16BBFDEB1C6A40350056664D /* Main.storyboard */,
+				16605A1E1C720FA500DD1606 /* ConfirmKidViewController.swift */,
+				16605A1A1C71104300DD1606 /* routeTableViewCell.swift */,
 				16605A141C70E56C00DD1606 /* kidDetails.swift */,
 				16949E851C6C2FA3001A7D0E /* kidListTableViewCell.swift */,
 				16949E831C6BA504001A7D0E /* addKidViewController.swift */,
 				16949E871C6C375E001A7D0E /* kidListTableViewController.swift */,
+				16605A1C1C7112A000DD1606 /* routeTableViewController.swift */,
 				16949E8B1C6C381C001A7D0E /* kid.swift */,
+				16605A181C7108C100DD1606 /* kidStatistics.swift */,
 				16605A161C7102A600DD1606 /* route.swift */,
 				16949E7F1C6BA17B001A7D0E /* routeViewController.swift */,
 				16949E7B1C6AB701001A7D0E /* childViewController.swift */,
@@ -175,8 +187,12 @@
 				16BBFDE81C6A40350056664D /* AppDelegate.swift in Sources */,
 				16949E8C1C6C381C001A7D0E /* kid.swift in Sources */,
 				16949E841C6BA504001A7D0E /* addKidViewController.swift in Sources */,
+				16605A191C7108C100DD1606 /* kidStatistics.swift in Sources */,
 				16605A171C7102A600DD1606 /* route.swift in Sources */,
+				16605A1D1C7112A000DD1606 /* routeTableViewController.swift in Sources */,
+				16605A1B1C71104300DD1606 /* routeTableViewCell.swift in Sources */,
 				16949E891C6C375E001A7D0E /* kidListTableViewController.swift in Sources */,
+				16605A1F1C720FA500DD1606 /* ConfirmKidViewController.swift in Sources */,
 				16949E801C6BA17B001A7D0E /* routeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

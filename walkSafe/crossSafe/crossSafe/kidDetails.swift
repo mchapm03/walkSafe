@@ -12,6 +12,7 @@ class kidDetails: UIViewController {
     
     @IBOutlet weak var phoneNumber: UILabel!
     var kid : Kid?
+    var routes = [Route]()
     override func viewDidLoad() {
         super.viewDidLoad()
         if let kid = kid {
@@ -22,22 +23,34 @@ class kidDetails: UIViewController {
                 phoneNumber.text = ""
             }
         }
+        loadSampleRoutes()
     }
-    
+    func loadSampleRoutes() {
+        routes += [Route(time:NSDate())]
+        routes += [Route(time:NSDate(timeIntervalSinceNow: 78939))]
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     
-    /*
+    
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        if segue.identifier == "showKidRoutes" {
+            let routesTVC = segue.destinationViewController as! routeTableViewController
+            
+            // Get the cell that generated this segue.
+            if let currentKid = kid {
+                
+                routesTVC.kid = currentKid
+            }
+        }
     }
-    */
+    
     
 }
