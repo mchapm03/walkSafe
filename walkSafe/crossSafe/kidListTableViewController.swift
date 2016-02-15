@@ -24,6 +24,7 @@ class kidListTableViewController: UITableViewController {
         kids += [Kid(name: "Johnny", phone: 8903873728)!]
         let kid1 = Kid(name: "Suzy")
         kid1?.isConfirmed = true
+        kid1?.routes = [Route(time:NSDate()), Route(time: NSDate(timeIntervalSinceNow: 398398))]
         kids += [kid1!]
     }
 

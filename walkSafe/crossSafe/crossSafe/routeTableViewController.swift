@@ -15,9 +15,26 @@ class routeTableViewController: UITableViewController {
         var routes = [Route]()
         var kid : Kid?
     
-        // MARK: - Table view data source
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Use the edit button item provided by the table view controller.
+        navigationItem.leftBarButtonItem = editButtonItem()
         
+        loadRoutes()
+    }
+    func loadRoutes() {
+        if kid != nil {
+            if kid?.routes != nil{
+                self.routes = (kid?.routes)!
+            }
+        }
+    }
+    
+        // MARK: - Table view data source
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return routes.count
+    }
+    
         override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             let cellIdentifier = "routeTableViewCell"
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! routeTableViewCell
