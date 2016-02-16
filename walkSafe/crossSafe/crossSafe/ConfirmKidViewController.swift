@@ -19,9 +19,18 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
     
     var kid: Kid?
     
+    override func viewDidAppear(animated: Bool) {
+        if let kid = self.kid {
+            if kid.isConfirmed {
+                performSegueWithIdentifier("showKidDetails", sender: self)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
         codeInput.delegate = self
         
         // Enable the Save button only if the text field has valid input.
@@ -62,6 +71,18 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        if identifier == "showKidDetails"{
+//            if let kid = self.kid {
+//                if !kid.isConfirmed {
+//                    return false
+//                }else{
+//                    return true
+//                }
+//            }
+//        }
+//        return true
+//    }
     // confirm the kid
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if submitButton === sender {
@@ -70,6 +91,16 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
                 kid?.confirmKid(Int(text))
             }
         }
+        if segue.identifier == "showKidDetails" {
+            //let kidDetailVC = segue.destinationViewController as! kidDetails
+            let nav = segue.destinationViewController as! UINavigationController
+            let kidDetailVC = nav.topViewController as! kidDetails
+            // Get the cell that generated this segue.
+            if let selectedKid = kid {
+                kidDetailVC.kid = selectedKid
+            }
+        }
+       
     }
     
 }

@@ -42,8 +42,9 @@ class kidDetails: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showKidRoutes" {
+            //let nav = segue.destinationViewController as! UINavigationController
+            //let routesTVC = nav.topViewController as! routeTableViewController
             let routesTVC = segue.destinationViewController as! routeTableViewController
-            
             // Get the cell that generated this segue.
             if let currentKid = kid {
                 

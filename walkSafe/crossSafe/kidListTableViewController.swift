@@ -77,18 +77,21 @@ class kidListTableViewController: UITableViewController {
     }
     
     
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? addKidViewController, kid = sourceViewController.kid {
+    @IBAction func unwindToKidList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? ConfirmKidViewController, kid = sourceViewController.kid {
+            
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
+                // Update an existing kid.
                 kids[selectedIndexPath.row] = kid
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
             } else {
-                // Add a new meal.
-                let newIndexPath = NSIndexPath(forRow: kids.count, inSection: 0)
-                kids.append(kid)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+//                // Add a new kid.
+//                let newIndexPath = NSIndexPath(forRow: kids.count, inSection: 0)
+//                kids.append(kid)
+//                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
+
+            
         }
     }
 
@@ -97,7 +100,31 @@ class kidListTableViewController: UITableViewController {
 
     // TODO: add a segue to the confirm kid page if the kid.isConfirmed == false
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the cell that generated this segue.
+        /*if let selectedKid = sender as? kidListTableViewCell {
+            let indexPath = tableView.indexPathForCell(selectedKid)!
+            let selectedKid = kids[indexPath.row]
+            if selectedKid.isConfirmed == false {
+                performSegueWithIdentifier("showConfirmKid", sender: self)
+            }else{
+                //performSegueWithIdentifier("ShowKidRoutes", sender: self)
+            }
+            //routesViewController.kid = selectedKid
+        }
+*/
         
+        if segue.identifier == "showConfirmKid" {
+            let confirmViewController = segue.destinationViewController as! ConfirmKidViewController
+
+            // Get the cell that generated this segue.
+            if let selectedKid = sender as? kidListTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedKid)!
+                let selectedKid = kids[indexPath.row]
+                confirmViewController.kid = selectedKid
+                
+            }
+        }
+        /*
         if segue.identifier == "ShowKidRoutes" {
             let routesViewController = segue.destinationViewController as! kidDetails
             
@@ -105,9 +132,12 @@ class kidListTableViewController: UITableViewController {
             if let selectedKid = sender as? kidListTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedKid)!
                 let selectedKid = kids[indexPath.row]
+                if selectedKid.isConfirmed == false {
+                    performSegueWithIdentifier("showConfirmKid", sender: self)
+                }
                 routesViewController.kid = selectedKid
             }
-        }
+        }*/
     }
     
     

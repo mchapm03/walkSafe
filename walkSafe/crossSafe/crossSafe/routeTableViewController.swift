@@ -46,12 +46,10 @@ class routeTableViewController: UITableViewController {
             return cell
         }
         
-        
-        
         // Override to support conditional editing of the table view.
         override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
             // Return false if you do not want the specified item to be editable.
-            return true
+            return false
         }
 
         
@@ -61,8 +59,9 @@ class routeTableViewController: UITableViewController {
         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             
             if segue.identifier == "ShowRoute" {
+                //let nav = segue.destinationViewController as! UINavigationController
+                //let routesVC = nav.topViewController as! routeViewController
                 let routesVC = segue.destinationViewController as! routeViewController
-                
                 // Get the cell that generated this segue.
                 if let selectedRoute = sender as? routeTableViewCell {
                     let indexPath = tableView.indexPathForCell(selectedRoute)!
@@ -71,9 +70,6 @@ class routeTableViewController: UITableViewController {
                 }
             }
         }
-        
-        
-        
-        
+         
         
 }

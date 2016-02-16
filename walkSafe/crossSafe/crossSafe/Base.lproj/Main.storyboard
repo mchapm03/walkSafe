@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -139,7 +140,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="childLabel" destination="98q-f4-UcW" id="cmS-ru-JHm"/>
-                                    <segue destination="z6u-r6-oho" kind="show" identifier="ShowKidRoutes" id="ofi-ah-akA"/>
+                                    <segue destination="eu8-bo-Pct" kind="show" identifier="showConfirmKid" id="kdb-Ba-3ye"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -172,13 +173,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Route ####" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-5L-MqT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Route ####" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-5L-MqT">
                                 <rect key="frame" x="230" y="104" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jHb-sn-bzP">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jHb-sn-bzP">
                                 <rect key="frame" x="155" y="199" width="240" height="128"/>
                             </mapView>
                         </subviews>
@@ -197,8 +198,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="jle-wX-qxi"/>
-                                <exclude reference="uHv-Ll-FtF"/>
                                 <exclude reference="2oa-fN-IeB"/>
                                 <exclude reference="4LK-Wg-Nda"/>
                                 <exclude reference="OJo-92-H7U"/>
@@ -206,13 +205,13 @@
                                 <exclude reference="W6e-Me-3Tb"/>
                                 <exclude reference="dH6-dr-DQo"/>
                                 <exclude reference="tMb-lf-SpJ"/>
+                                <exclude reference="jle-wX-qxi"/>
+                                <exclude reference="uHv-Ll-FtF"/>
                                 <exclude reference="g1b-s8-Q9a"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="jle-wX-qxi"/>
-                                <include reference="uHv-Ll-FtF"/>
                                 <include reference="2oa-fN-IeB"/>
                                 <include reference="4LK-Wg-Nda"/>
                                 <include reference="OJo-92-H7U"/>
@@ -220,6 +219,8 @@
                                 <include reference="W6e-Me-3Tb"/>
                                 <include reference="dH6-dr-DQo"/>
                                 <include reference="tMb-lf-SpJ"/>
+                                <include reference="jle-wX-qxi"/>
+                                <include reference="uHv-Ll-FtF"/>
                                 <include reference="g1b-s8-Q9a"/>
                             </mask>
                         </variation>
@@ -232,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-hP-aBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6699" y="1528.5"/>
+            <point key="canvasLocation" x="5833.5" y="1484.25"/>
         </scene>
         <!--Add Kid-->
         <scene sceneID="tzC-Lm-iGf">
@@ -329,6 +330,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7uI-NP-Vfw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OJS-DG-Rkn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Confirmation Code:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2N-cE-lzY">
@@ -340,9 +342,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1A6-PS-vjg">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Submit"/>
-                                <connections>
-                                    <segue destination="w27-pH-JW7" kind="show" id="LJH-P7-bh0"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXh-l8-ocH">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -376,8 +375,6 @@
                                 <exclude reference="3eB-KF-5EN"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="85X-Y7-BlN"/>
-                                <exclude reference="Ssm-DU-3l5"/>
                                 <exclude reference="BDO-Od-Cxs"/>
                                 <exclude reference="HB1-KF-Fjb"/>
                                 <exclude reference="KBK-7O-ZtG"/>
@@ -387,6 +384,8 @@
                                 <exclude reference="ys8-iH-LOO"/>
                                 <exclude reference="6vy-s5-UVy"/>
                                 <exclude reference="RE1-Dc-n3q"/>
+                                <exclude reference="85X-Y7-BlN"/>
+                                <exclude reference="Ssm-DU-3l5"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -397,8 +396,6 @@
                                 <include reference="3eB-KF-5EN"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="85X-Y7-BlN"/>
-                                <include reference="Ssm-DU-3l5"/>
                                 <include reference="BDO-Od-Cxs"/>
                                 <include reference="HB1-KF-Fjb"/>
                                 <include reference="KBK-7O-ZtG"/>
@@ -408,19 +405,29 @@
                                 <include reference="ys8-iH-LOO"/>
                                 <include reference="6vy-s5-UVy"/>
                                 <include reference="RE1-Dc-n3q"/>
+                                <include reference="85X-Y7-BlN"/>
+                                <include reference="Ssm-DU-3l5"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="clg-RC-l6h"/>
+                    <navigationItem key="navigationItem" id="clg-RC-l6h">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6tb-S8-LlO">
+                            <connections>
+                                <segue destination="WYT-un-irR" kind="unwind" unwindAction="unwindToKidList:" id="qxE-Rb-Xts"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="codeInput" destination="3eB-KF-5EN" id="Vym-Si-06O"/>
                         <outlet property="newCodeButton" destination="dXh-l8-ocH" id="DAQ-Xz-aYI"/>
                         <outlet property="submitButton" destination="1A6-PS-vjg" id="cA7-qh-TX6"/>
+                        <segue destination="Asa-nH-IJt" kind="show" identifier="showKidDetails" id="9d5-3y-PWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD3-yS-JhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="WYT-un-irR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3757.5" y="240"/>
+            <point key="canvasLocation" x="2380.5" y="202.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f2w-mg-12Y">
@@ -457,9 +464,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="36" y="106" width="102" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhn-Ib-es1">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -491,12 +495,12 @@
                                 <exclude reference="nGN-LZ-U9Z"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Dpe-DN-emJ"/>
+                                <exclude reference="WIL-ev-e9P"/>
                                 <exclude reference="CUg-sv-WNB"/>
                                 <exclude reference="MXq-nf-qxt"/>
                                 <exclude reference="GPc-y4-N06"/>
                                 <exclude reference="H9q-1v-PMN"/>
-                                <exclude reference="Dpe-DN-emJ"/>
-                                <exclude reference="WIL-ev-e9P"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -506,12 +510,12 @@
                                 <include reference="nGN-LZ-U9Z"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Dpe-DN-emJ"/>
+                                <include reference="WIL-ev-e9P"/>
                                 <include reference="CUg-sv-WNB"/>
                                 <include reference="MXq-nf-qxt"/>
                                 <include reference="GPc-y4-N06"/>
                                 <include reference="H9q-1v-PMN"/>
-                                <include reference="Dpe-DN-emJ"/>
-                                <include reference="WIL-ev-e9P"/>
                             </mask>
                         </variation>
                     </view>
@@ -522,20 +526,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYB-m5-lUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3979.5" y="1571.25"/>
+            <point key="canvasLocation" x="3580.5" y="1218.75"/>
         </scene>
         <!--Routes-->
         <scene sceneID="63x-zg-kOc">
             <objects>
                 <tableViewController id="GlX-BT-Sge" customClass="routeTableViewController" customModule="crossSafe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sCi-gY-orT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="routeTableViewCell" id="pWt-Kr-vxf" customClass="routeTableViewCell" customModule="crossSafe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pWt-Kr-vxf" id="Ex2-qr-oS5">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2R-jR-6kU">
@@ -582,7 +588,7 @@
                                 <connections>
                                     <outlet property="routeColor" destination="BhS-Kh-Oa0" id="L5W-8A-aOa"/>
                                     <outlet property="routeTitle" destination="u2R-jR-6kU" id="0se-mN-wFd"/>
-                                    <segue destination="RCV-hE-j90" kind="show" identifier="ShowRoute" id="817-CG-u0U"/>
+                                    <segue destination="RCV-hE-j90" kind="show" identifier="Show Route" id="doM-JK-qNJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -607,13 +613,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="RCV-hE-j90" kind="relationship" relationship="rootViewController" id="gB7-LA-NEQ"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAp-rF-2y0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5998.5" y="1899"/>
+            <point key="canvasLocation" x="5653.5" y="1603.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kqj-Hi-brF">
@@ -631,49 +634,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OnT-5T-YSZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2785" y="1550"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xgC-9T-lHu">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EfP-Wj-Itj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aaT-Uu-p84">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="eu8-bo-Pct" kind="relationship" relationship="rootViewController" id="DPc-G3-8Ok"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g6v-Io-GAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2839.5" y="240"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="UAZ-g7-pcb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2IU-oE-SXu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2hh-Kr-1Wp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="GlX-BT-Sge" kind="relationship" relationship="rootViewController" id="aa5-EH-fnX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tIS-US-hIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4692" y="1466.25"/>
+            <point key="canvasLocation" x="3261" y="795"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="c2x-HQ-IaN"/>
-        <segue reference="ofi-ah-akA"/>
-        <segue reference="3xJ-Bs-Aws"/>
-        <segue reference="817-CG-u0U"/>
-    </inferredMetricsTieBreakers>
 </document>
