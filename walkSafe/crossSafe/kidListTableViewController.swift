@@ -20,6 +20,7 @@ class kidListTableViewController: UITableViewController {
         
         loadSampleKids()
     }
+    // TODO: load real kids and their views. Incorporate NSData and Heroku server
     func loadSampleKids() {
         kids += [Kid(name: "Johnny", phone: 8903873728)!]
         let kid1 = Kid(name: "Suzy")
@@ -84,35 +85,39 @@ class kidListTableViewController: UITableViewController {
                 // Update an existing kid.
                 kids[selectedIndexPath.row] = kid
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
-            } else {
-//                // Add a new kid.
-//                let newIndexPath = NSIndexPath(forRow: kids.count, inSection: 0)
-//                kids.append(kid)
-//                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
-            }
 
-            
+            } 
         }
+        if let sourceViewController = sender.sourceViewController as? addKidViewController, kid = sourceViewController.kid {
+            print("here")
+                // Add a new kid.
+                let newIndexPath = NSIndexPath(forRow: kids.count, inSection: 0)
+                kids.append(kid)
+                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+        
     }
 
     
     // MARK: - Navigation
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "showConfirmKid"{
+            if let selectedKid = sender as? kidListTableViewCell{
+                let indexPath = tableView.indexPathForCell(selectedKid)!
+                let selectedKid = kids[indexPath.row]
+                if selectedKid.isConfirmed {
+                    performSegueWithIdentifier("showKidDetails", sender: selectedKid)
+                    return false
+                }
+            }
+        }
+        return true
+    }
 
     // TODO: add a segue to the confirm kid page if the kid.isConfirmed == false
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the cell that generated this segue.
-        /*if let selectedKid = sender as? kidListTableViewCell {
-            let indexPath = tableView.indexPathForCell(selectedKid)!
-            let selectedKid = kids[indexPath.row]
-            if selectedKid.isConfirmed == false {
-                performSegueWithIdentifier("showConfirmKid", sender: self)
-            }else{
-                //performSegueWithIdentifier("ShowKidRoutes", sender: self)
-            }
-            //routesViewController.kid = selectedKid
-        }
-*/
-        
+     
         if segue.identifier == "showConfirmKid" {
             let confirmViewController = segue.destinationViewController as! ConfirmKidViewController
 
@@ -120,24 +125,23 @@ class kidListTableViewController: UITableViewController {
             if let selectedKid = sender as? kidListTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedKid)!
                 let selectedKid = kids[indexPath.row]
+                if selectedKid.isConfirmed {
+                    performSegueWithIdentifier("showKidDetails", sender: selectedKid)
+                    
+                }
                 confirmViewController.kid = selectedKid
                 
             }
         }
-        /*
-        if segue.identifier == "ShowKidRoutes" {
+        
+        if segue.identifier == "showKidDetails" {
             let routesViewController = segue.destinationViewController as! kidDetails
             
             // Get the cell that generated this segue.
-            if let selectedKid = sender as? kidListTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedKid)!
-                let selectedKid = kids[indexPath.row]
-                if selectedKid.isConfirmed == false {
-                    performSegueWithIdentifier("showConfirmKid", sender: self)
-                }
+            if let selectedKid = sender as? Kid {
                 routesViewController.kid = selectedKid
             }
-        }*/
+        }
     }
     
     

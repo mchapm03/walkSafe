@@ -62,11 +62,14 @@ class addKidViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Navigation
 
     @IBAction func cancel(sender: UIBarButtonItem) {
+        print("cancel")
         dismissViewControllerAnimated(true, completion: nil)
     }
     // This method lets you configure a view controller before it's presented.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("preparing")
         if saveButton === sender {
+            print("save button pressed")
             let name = kidNameInput.text ?? ""
             var phone = kidPhoneInput.text ?? ""
             phone = phone.stringByReplacingOccurrencesOfString("-", withString: "")

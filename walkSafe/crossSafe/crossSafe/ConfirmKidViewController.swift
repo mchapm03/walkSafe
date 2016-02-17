@@ -18,14 +18,14 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var newCodeButton: UIButton!
     
     var kid: Kid?
-    
-    override func viewDidAppear(animated: Bool) {
-        if let kid = self.kid {
-            if kid.isConfirmed {
-                performSegueWithIdentifier("showKidDetails", sender: self)
-            }
-        }
-    }
+//    
+//    override func viewDidAppear(animated: Bool) {
+//        if let kid = self.kid {
+//            if kid.isConfirmed {
+//                performSegueWithIdentifier("showKidDetails", sender: self)
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,33 +71,14 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-//        if identifier == "showKidDetails"{
-//            if let kid = self.kid {
-//                if !kid.isConfirmed {
-//                    return false
-//                }else{
-//                    return true
-//                }
-//            }
-//        }
-//        return true
-//    }
+    
     // confirm the kid
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //TODO: write code to confirm kid
         if submitButton === sender {
             let text = codeInput.text ?? ""
             if kid != nil{
                 kid?.confirmKid(Int(text))
-            }
-        }
-        if segue.identifier == "showKidDetails" {
-            //let kidDetailVC = segue.destinationViewController as! kidDetails
-            let nav = segue.destinationViewController as! UINavigationController
-            let kidDetailVC = nav.topViewController as! kidDetails
-            // Get the cell that generated this segue.
-            if let selectedKid = kid {
-                kidDetailVC.kid = selectedKid
             }
         }
        
