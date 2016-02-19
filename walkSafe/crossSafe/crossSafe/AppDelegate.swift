@@ -7,15 +7,22 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    //let locationManager = CLLocationManager()
+    //var defaults : NSUserDefaults?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //defaults = NSUserDefaults.standardUserDefaults()
+
         // Override point for customization after application launch.
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.startUpdatingLocation()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         return true
     }
 

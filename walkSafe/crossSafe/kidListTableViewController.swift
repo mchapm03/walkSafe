@@ -18,7 +18,12 @@ class kidListTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        loadSampleKids()
+        // Load any saved kids, otherwise load sample data.
+        if let savedKids = loadKids() {
+            kids += savedKids
+        }else{
+            loadSampleKids()
+        }
     }
     // TODO: load real kids and their views. Incorporate NSData and Heroku server
     func loadSampleKids() {
@@ -71,33 +76,31 @@ class kidListTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             kids.removeAtIndex(indexPath.row)
+            saveKid()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
     
-    
     @IBAction func unwindToKidList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ConfirmKidViewController, kid = sourceViewController.kid {
-            
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing kid.
                 kids[selectedIndexPath.row] = kid
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
-
             } 
         }
         if let sourceViewController = sender.sourceViewController as? addKidViewController, kid = sourceViewController.kid {
-            print("here")
                 // Add a new kid.
                 let newIndexPath = NSIndexPath(forRow: kids.count, inSection: 0)
                 kids.append(kid)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
         }
         
+        saveKid()
+        
     }
-
     
     // MARK: - Navigation
     
@@ -145,7 +148,18 @@ class kidListTableViewController: UITableViewController {
     }
     
     
+    //MARK: NSCoding
     
+    func saveKid() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(kids, toFile: Kid.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save kids...")
+        }
+    }
+    
+    func loadKids() -> [Kid]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Kid.ArchiveURL.path!) as? [Kid]
+    }
 
     
 }

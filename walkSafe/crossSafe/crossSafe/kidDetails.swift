@@ -25,6 +25,11 @@ class kidDetails: UIViewController {
         }
         loadSampleRoutes()
     }
+    // TODO: load kid stats from heroku and create graphics for them
+    
+    
+    
+    // TODO: load these from heroku
     func loadSampleRoutes() {
         routes += [Route(time:NSDate())]
         routes += [Route(time:NSDate(timeIntervalSinceNow: 78939))]
@@ -38,8 +43,6 @@ class kidDetails: UIViewController {
     
     
     // MARK: - Navigation
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showKidRoutes" {
             //let nav = segue.destinationViewController as! UINavigationController
