@@ -16,6 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Umn-kz-Gv8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="v9L-FJ-SOn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter your name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Va-j2-iha">
@@ -41,9 +42,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="490" width="400" height="40"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,14 +66,14 @@
                                 <exclude reference="zAS-ZZ-ZHU"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="RdH-gZ-i5r"/>
-                                <exclude reference="bYX-ve-Tnh"/>
                                 <exclude reference="FJj-5t-RKR"/>
                                 <exclude reference="FqS-Az-gZa"/>
                                 <exclude reference="nsh-xD-bth"/>
                                 <exclude reference="z3p-jh-FCB"/>
                                 <exclude reference="uG6-SX-kJe"/>
                                 <exclude reference="xnV-ow-mDx"/>
+                                <exclude reference="RdH-gZ-i5r"/>
+                                <exclude reference="bYX-ve-Tnh"/>
                                 <exclude reference="OGA-ud-VDn"/>
                                 <exclude reference="T4q-Uh-ngH"/>
                                 <exclude reference="bec-U7-uMS"/>
@@ -89,14 +87,14 @@
                                 <include reference="zAS-ZZ-ZHU"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="RdH-gZ-i5r"/>
-                                <include reference="bYX-ve-Tnh"/>
                                 <include reference="FJj-5t-RKR"/>
                                 <include reference="FqS-Az-gZa"/>
                                 <include reference="nsh-xD-bth"/>
                                 <include reference="z3p-jh-FCB"/>
                                 <include reference="uG6-SX-kJe"/>
                                 <include reference="xnV-ow-mDx"/>
+                                <include reference="RdH-gZ-i5r"/>
+                                <include reference="bYX-ve-Tnh"/>
                                 <include reference="OGA-ud-VDn"/>
                                 <include reference="T4q-Uh-ngH"/>
                                 <include reference="bec-U7-uMS"/>
@@ -181,7 +179,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3J-sl-GaI">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3J-sl-GaI">
                                 <rect key="frame" x="254" y="285" width="92" height="30"/>
                                 <state key="normal" title="Start Walk"/>
                                 <connections>
