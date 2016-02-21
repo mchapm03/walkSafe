@@ -9,6 +9,7 @@
 
 
 import UIKit
+import Foundation
 
 class routeTableViewController: UITableViewController {
         
@@ -28,21 +29,31 @@ class routeTableViewController: UITableViewController {
             if kid?.routes != nil{
                 self.routes = (kid?.routes)!
             }
+            //TODO: load routeIDs and find all in database:
+            if kid?.routeIDs != nil{
+                print("kid ids: \(kid?.routeIDs)")
+
+            }
         }
     }
     
         // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return routes.count
+        return (kid?.routeIDs.count)!
+        //return routes.count
     }
     
         override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             let cellIdentifier = "routeTableViewCell"
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! routeTableViewCell
             // TODO: show the route date in a "normal/redable" format
-            let route = routes[indexPath.row]
-            cell.routeTitle.text = route.date.description
-            
+//            let route = routes[indexPath.row]
+            let route = kid?.routeIDs[indexPath.row]
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            let convertedDate = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: route!))
+            cell.routeTitle.text = convertedDate
             
             return cell
         }
@@ -64,7 +75,8 @@ class routeTableViewController: UITableViewController {
                 // Get the cell that generated this segue.
                 if let selectedRoute = sender as? routeTableViewCell {
                     let indexPath = tableView.indexPathForCell(selectedRoute)!
-                    let selectedRoute = routes[indexPath.row]
+                    //let selectedRoute = routes[indexPath.row]
+                    let selectedRoute = kid?.routeIDs[indexPath.row]
                     // Set the route to the one that the user selected.
                     routesVC.route = selectedRoute
                 }

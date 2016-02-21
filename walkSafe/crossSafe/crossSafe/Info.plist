@@ -38,7 +38,7 @@
 		<string>MKDirectionsModePedestrian</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Walk Safe requires access to your phone's location</string>
+	<string>Walk Safe requires access to your phone&apos;s location</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -51,6 +51,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

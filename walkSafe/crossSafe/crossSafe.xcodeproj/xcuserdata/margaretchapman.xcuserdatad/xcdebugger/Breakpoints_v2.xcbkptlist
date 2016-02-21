@@ -95,7 +95,11 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
+<<<<<<< HEAD
             landmarkName = "savePolyline()"
+=======
+            landmarkName = "loadSampleIntersections()"
+>>>>>>> new_branch
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
