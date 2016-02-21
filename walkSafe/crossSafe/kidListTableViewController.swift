@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class kidListTableViewController: UITableViewController {
     
     var kids = [Kid]()
-
+    var routeIDs = [Double]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,19 @@ class kidListTableViewController: UITableViewController {
         kid1?.isConfirmed = true
         kid1?.routes = [Route(time:NSDate()), Route(time: NSDate(timeIntervalSinceNow: 398398))]
         kids += [kid1!]
+    }
+    func loadSampleRoute() -> Route {
+        let date = NSDate(timeIntervalSince1970:(Double(String(NSDate().timeIntervalSince1970)))!)
+        let inter: [CLLocationCoordinate2D] = []
+        let strt: [CLLocationCoordinate2D] = []
+        let polyline = [(30, -70), (30.11,-69.88),(30.2,-69.80)]
+        var p2 = polyline.map({ (lat: Double, long: Double) -> CLLocationCoordinate2D in
+            return CLLocationCoordinate2D(latitude: lat, longitude: long)})
+        let route1 = Route(time: date)
+        route1.routeCoords = MKPolyline(coordinates: &p2, count: polyline.count)
+        route1.intersectX = inter
+        route1.streetX = strt
+        return route1
     }
 
     override func didReceiveMemoryWarning() {
@@ -158,7 +173,66 @@ class kidListTableViewController: UITableViewController {
     }
     
     func loadKids() -> [Kid]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Kid.ArchiveURL.path!) as? [Kid]
+        // Get kids from nscoder stored data
+        let myKids = NSKeyedUnarchiver.unarchiveObjectWithFile(Kid.ArchiveURL.path!) as? [Kid]
+        for kid in (myKids)!{
+            if kid.name == "Maggie"{
+            if let url = NSURL(string: "https://walk-safe.herokuapp.com/getChildRoutes"){
+                let session = NSURLSession.sharedSession() // use to get data
+                let request = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                //send parent id and child name
+                let paramString = "parentID=" + "&childName=" + kid.name
+                print(paramString)
+                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                let task = session.dataTaskWithRequest(request) {
+                    (let data, let response, let error) -> Void in
+                    
+                    if error != nil {
+                        print ("Whoops, something went wrong with the connections! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                    }
+//                    if let httpResponse = response as? NSHTTPURLResponse {
+//                        print(httpResponse.description)
+//
+//                        if httpResponse.statusCode != 200 {
+//                            let alert = UIAlertController(title: "Account Creation Failed", message: "Sorry, your name could not be added!", preferredStyle: UIAlertControllerStyle.Alert)
+//                            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+//                            self.presentViewController(alert, animated: true, completion: nil)
+//                        }
+//                    }else{
+//                        print("other error")
+//                    }
+
+                    if data != nil {
+                        do{
+                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+
+                            if let json = raw as? [[String: AnyObject]] {
+                                for entry in json {
+                                    if let entries = entry["routes"] as? [String]{
+                                        for e in entries{
+                                            self.routeIDs += [Double(e)!]
+                                            kid.routeIDs += [Double(e)!]
+                                        }
+                                    }
+                                   // kid.routeIDs = self.
+                                    print("entries: \(kid.routeIDs)")
+                                }
+                            }
+                        }
+                        catch{ //If not json type data
+                            // If child not in db
+                            print("not json")
+                            kid.routes += [self.loadSampleRoute()]
+                            
+                        }
+                    }
+                }
+                task.resume() //sending request
+            }
+        }
+        }
+        return myKids
     }
 
     
