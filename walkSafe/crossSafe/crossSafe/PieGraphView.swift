@@ -13,9 +13,9 @@ let π:CGFloat = CGFloat(M_PI)
 
 @IBDesignable class PieGraphView: UIView {
     //bad crosses color
-    @IBInspectable var arcColor: UIColor = UIColor(red: 0.933333, green: 0.505882, blue: 0.474509, alpha: 1)
+    @IBInspectable var arcColor: UIColor = UIColor(red: 0.505882, green: 0.909803, blue: 0.560784, alpha: 1)
     //good crosses color
-    @IBInspectable var circleColor: UIColor = UIColor(red: 0.505882, green: 0.909803, blue: 0.560784, alpha: 1)
+    @IBInspectable var circleColor: UIColor = UIColor(red: 0.933333, green: 0.505882, blue: 0.474509, alpha: 1)
     
 // -------------------------------------------------
     //number of good/bad crosses
