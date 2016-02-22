@@ -10,6 +10,8 @@ import UIKit
 
 class kidDetails: UIViewController {
     
+    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var overallGraphView: OverallGraphView!
     @IBOutlet weak var phoneNumber: UILabel!
     var kid : Kid?
     var routes = [Route]()
@@ -24,6 +26,8 @@ class kidDetails: UIViewController {
             }
         }
         loadSampleRoutes()
+        
+        setupGraphDisplay()
     }
     // TODO: load kid stats from heroku and create graphics for them
     
@@ -50,11 +54,18 @@ class kidDetails: UIViewController {
             let routesTVC = segue.destinationViewController as! routeTableViewController
             // Get the cell that generated this segue.
             if let currentKid = kid {
-                
+                print(currentKid.name)
                 routesTVC.kid = currentKid
             }
         }
     }
     
-    
+    func setupGraphDisplay() {
+        if let maxPoint = overallGraphView.graphPoints.maxElement() {
+            maxLabel.text = "\(maxPoint)"
+        }
+        else {
+            maxLabel.text = ""
+        }
+    }
 }

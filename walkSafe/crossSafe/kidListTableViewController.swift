@@ -174,35 +174,20 @@ class kidListTableViewController: UITableViewController {
     
     func loadKids() -> [Kid]? {
         // Get kids from nscoder stored data
-        let myKids = NSKeyedUnarchiver.unarchiveObjectWithFile(Kid.ArchiveURL.path!) as? [Kid]
-        for kid in (myKids)!{
-            if kid.name == "Maggie"{
+        if let myKids = NSKeyedUnarchiver.unarchiveObjectWithFile(Kid.ArchiveURL.path!) as? [Kid] {
+        for kid in (myKids){
             if let url = NSURL(string: "https://walk-safe.herokuapp.com/getChildRoutes"){
                 let session = NSURLSession.sharedSession() // use to get data
                 let request = NSMutableURLRequest(URL: url)
                 request.HTTPMethod = "POST"
                 //send parent id and child name
                 let paramString = "parentID=" + "&childName=" + kid.name
-                print(paramString)
                 request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
                 let task = session.dataTaskWithRequest(request) {
                     (let data, let response, let error) -> Void in
-                    
                     if error != nil {
                         print ("Whoops, something went wrong with the connections! Details: \(error!.localizedDescription); \(error!.userInfo)")
                     }
-//                    if let httpResponse = response as? NSHTTPURLResponse {
-//                        print(httpResponse.description)
-//
-//                        if httpResponse.statusCode != 200 {
-//                            let alert = UIAlertController(title: "Account Creation Failed", message: "Sorry, your name could not be added!", preferredStyle: UIAlertControllerStyle.Alert)
-//                            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
-//                            self.presentViewController(alert, animated: true, completion: nil)
-//                        }
-//                    }else{
-//                        print("other error")
-//                    }
-
                     if data != nil {
                         do{
                             let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
@@ -215,25 +200,23 @@ class kidListTableViewController: UITableViewController {
                                             kid.routeIDs += [Double(e)!]
                                         }
                                     }
-                                   // kid.routeIDs = self.
-                                    print("entries: \(kid.routeIDs)")
                                 }
                             }
                         }
-                        catch{ //If not json type data
+                        catch{
                             // If child not in db
-                            print("not json")
-                            kid.routes += [self.loadSampleRoute()]
-                            
+                            //kid.routes += [self.loadSampleRoute()]
                         }
                     }
                 }
                 task.resume() //sending request
             }
         }
-        }
         return myKids
+        } else{
+            return nil
+        }
     }
-
+   
     
 }

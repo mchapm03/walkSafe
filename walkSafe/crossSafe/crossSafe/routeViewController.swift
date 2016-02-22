@@ -14,96 +14,109 @@ class routeViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var routeLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
-    //var route: Route?
-    var route: Double?
+    @IBOutlet weak var goodCross: UILabel!
+    @IBOutlet weak var badCross: UILabel!
+    @IBOutlet weak var pieGraphView: PieGraphView!
+    var route: Route?
+    //var route: Double?
     var coords = [CLLocationCoordinate2D]()
     var poly : MKPolyline?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let r = route {
+            pieGraphView.goodCross = (r.intersectX?.count)!
+            pieGraphView.badCross = (r.streetX?.count)!
+        }
+            
+        goodCross.text = "Good Crossings: \(pieGraphView.goodCross)"
+        badCross.text = "Bad Crossings: \(pieGraphView.badCross)"
+        
+        if self.coords.count != 0 {
+            self.updatepolyline()
+        }
+        
         //loadSampleRoute()
         if let route = self.route {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
             dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-            let convertedDate = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: route))
+            //let convertedDate = dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: route))
+            let convertedDate = dateFormatter.stringFromDate(route.date)
             routeLabel.text = convertedDate
-            
+            print("intersection count: \(route.intersectX?.count)")
+            print("street count: \(route.streetX?.count)")
+
+            self.poly = route.routeCoords
+            updatepolyline()
+//            var c1 = [CLLocationCoordinate2D]()
             // TODO: get route from db:
-            if let url = NSURL(string: "https://walk-safe.herokuapp.com/getRouteDetails"){
-                let session = NSURLSession.sharedSession() // use to get data
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "POST"
-                let paramString = "routeID=\(route)"
-                print("route id: " + paramString)
-                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-                let task = session.dataTaskWithRequest(request) {
-                    (let data, let response, let error) -> Void in
-                    
-                    if error != nil {
-                        print ("Whoops, something went wrong with the connections! Details: \(error!.localizedDescription); \(error!.userInfo)")
-                    }
-                    
-                    if data != nil {
-                        do{
-                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                            
-                            if let json = raw as? [[String: AnyObject]] {
-                                print("in json")
-                                for entry in json {
-                                    print("in entry: \(entry["polylines"]!)")
-                                    if let e1 = entry["polylines"] as? String {
+//            if let url = NSURL(string: "https://walk-safe.herokuapp.com/getRouteDetails"){
+//                let session = NSURLSession.sharedSession() // use to get data
+//                let request = NSMutableURLRequest(URL: url)
+//                request.HTTPMethod = "POST"
+//                let paramString = "routeID=\(route)"
+//                print("route id: " + paramString)
+//                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+//                let task = session.dataTaskWithRequest(request) {
+//                    (let data, let response, let error) -> Void in
+//                    
+//                    if error != nil {
+//                        print ("Whoops, something went wrong with the connections! Details: \(error!.localizedDescription); \(error!.userInfo)")
+//                    }
+//                    
+//                    if data != nil {
+//                        do{
+//                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+//                            
+//                            if let json = raw as? [[String: AnyObject]] {
+//                               // print("in json")
+//                                for entry in json {
+//                                    //print("in entry: \(entry["polylines"]!)")
+//                                    if let e1 = entry["polylines"] as? String {
 //                                        do{
-//                                            let r1 = try NSJSONSerialization.JSONObjectWithData(e1, options: NSJSONReadingOptions.MutableContainers)
-//                                                if let j1 = r1 as? [[String: AnyObject]] {
-//                                                    print("j1 \(j1)")
+//                                            let r1 = try NSJSONSerialization.JSONObjectWithData(e1.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableContainers)
+//                                                if let j1 = r1 as? [[Double]] {
+//                                                    for cord in j1{
+//                                                        c1 += [CLLocationCoordinate2D(latitude: cord[0], longitude: cord[1])]
+//                                                    }
 //                                                }
+//                                            self.coords = c1
+////                                            self.updatepolyline()
+//                                            
 //                                        }
 //                                        catch {
 //                                            print("other obj")
 //                                        }
-                                        
-                                        print("e1: " + e1)
-                                    }
-                                    
-                                    if let entries = entry["polylines"] as? [(Double, Double)]{
-                                        print("in entry")
-                                        for (lat, long) in entries {
-                                            print("\(lat),  \(long)")
-                                        }
-                                    }
-//                                    var c1 = self.coords.map({ (lat: String, long: String) -> CLLocationCoordinate2D in
-//                                                    return CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)) })
-//                                    self.poly = MKPolyline(coordinates: &c1, count: self.c1.count)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        catch{ //If not json type data
+//                            // If route not in db
+//                            print("not route")
+//                        }
+//                    }
+//                }
+//                task.resume() //sending request
+//                
+//            }
 
-//                                    if let entries = entry["polylines"]! as? [(Double, Double)]{
-//                                        print("in next thing")
-//                                        for (lat, long) in entries{
-//                                           self.coords += [CLLocationCoordinate2D(latitude: lat, longitude: long)]
-//                                        }
-                                        //print("got coords")
-//                                        self.poly = MKPolyline(coordinates: &self.coords, count: self.coords.count)
-//                                        
-//                                        let l2 = self.poly!.boundingMapRect
-//                                        // Set zoom on map
-//                                        self.mapView.setVisibleMapRect(l2, animated: true)
-//                                        self.mapView.addOverlay((self.poly)!)
-//                                    
-                                }
-                                //print(json)
-                            }
-                        }
-                        catch{ //If not json type data
-                            // If route not in db
-                            print("not route")
-                        }
-                    }
-                }
-                task.resume() //sending request
-                
-            }
-        
-           
         }
+
+    }
+    
+    func updatepolyline() {
+        //self.poly = MKPolyline(coordinates: &coords, count: coords.count)
+        //print(coords.count)
+        
+        //   self.poly = MKPolyline(coordinates: &self.coords, count: self.coords.count)
+        
+        let l2 = self.poly!.boundingMapRect
+        // Set zoom on map
+        self.mapView.setVisibleMapRect(l2, animated: true)
+        self.mapView.addOverlay((self.poly)!)
     }
     // TODO: load real route
     func loadSampleRoute() {

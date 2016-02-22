@@ -20,7 +20,8 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     var placemark: CLPlacemark!
     var FLAG_recording = 0;
     var date = NSDate()
-    var IntersectionForServer:[(Double,Double)] = []
+    var IntersectionForServer:[[Double]] = []
+    var StreetForServer:[[Double]] = []
     
     //    print(mapView.userLocation.coordinate)
     var IntersectionDataCLL: [CLLocation] = []
@@ -35,10 +36,9 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
@@ -58,9 +58,14 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         /*
         Need to send the information to the server
         */
-        let myls = mylocations.map({CLLocationCoordinate2D -> (Double, Double) in
-                                        (CLLocationCoordinate2D.latitude, CLLocationCoordinate2D.longitude)})
-//        print("mylocations: \(myls)")
+        var myl2 = [[Double]]()
+        for location in mylocations {
+            let thisl = [Double(location.latitude), Double(location.longitude)]
+            myl2 += [thisl]
+        }
+        //mylocations.map({CLLocationCoordinate2D -> [Double, Double] in
+          //                              [CLLocationCoordinate2D.latitude, CLLocationCoordinate2D.longitude]})
+        print("mylocations: \(myl2)")
 //        print("IntersectionDataForServer: \(IntersectionForServer)")
 
         
@@ -77,8 +82,8 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             //                let routeID = date?.description
             let intersectX = IntersectionForServer
             // TODO
-            let streetX = [[]]
-            let paramString = "childID=" + UIDevice.currentDevice().identifierForVendor!.UUIDString + "&routeID=" + String(date.timeIntervalSince1970) + "&polylines=" + myls.description + "&intersectX=" + intersectX.description + "&streetX=" + streetX.description
+            let streetX = StreetForServer
+            let paramString = "childID=" + UIDevice.currentDevice().identifierForVendor!.UUIDString + "&routeID=" + String(date.timeIntervalSince1970) + "&polylines=" + myl2.description + "&intersectX=" + intersectX.description + "&streetX=" + streetX.description
             print(paramString)
             request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
             let task = session.dataTaskWithRequest(request) {
@@ -109,6 +114,7 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         mylocations=[]
         IntersectionDataCLL = []
         IntersectionForServer = []
+        StreetForServer = []
     }
 //    @IBAction func GeoCoderSwitch(sender: AnyObject) {
 //
@@ -180,12 +186,12 @@ class SecondViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                     let tempLoc = CLLocation(latitude: self.mapView.userLocation.coordinate.latitude, longitude: self.mapView.userLocation.coordinate.longitude)
                     if(self.IntersectionDataCLL.count < 1){
                         self.IntersectionDataCLL.append(tempLoc)
-                        self.IntersectionForServer.append((tempLoc.coordinate.latitude, tempLoc.coordinate.longitude))
+                        self.IntersectionForServer.append([tempLoc.coordinate.latitude, tempLoc.coordinate.longitude])
                     }else{
                         if(self.IntersectionDataCLL[ self.IntersectionDataCLL.endIndex-1].distanceFromLocation(tempLoc) > 30){
                             self.foundDash.text = "NewIntersectionFound"
                             self.IntersectionDataCLL.append(tempLoc)
-                            self.IntersectionForServer.append((tempLoc.coordinate.latitude, tempLoc.coordinate.longitude))
+                            self.IntersectionForServer.append([tempLoc.coordinate.latitude, tempLoc.coordinate.longitude])
                             print(self.IntersectionForServer)
                             self.NumberOfDetectedIntersection.text = String(self.IntersectionForServer.count)
                         }
