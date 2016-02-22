@@ -18,8 +18,9 @@ class ViewController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print((NSUserDefaults.standardUserDefaults().objectForKey("MyName") as! String))
-        print(UIDevice.currentDevice().identifierForVendor!.UUIDString)
+//        defaults.removeObjectForKey("MyName")
+//        print((NSUserDefaults.standardUserDefaults().objectForKey("MyName") as! String))
+//        print(UIDevice.currentDevice().identifierForVendor!.UUIDString)
     }
 
     override func didReceiveMemoryWarning() {

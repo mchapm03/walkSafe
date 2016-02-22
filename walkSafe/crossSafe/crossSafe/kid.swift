@@ -19,6 +19,7 @@ class Kid: NSObject, NSCoding {
     var isConfirmed: Bool
     var stats: KidStatistics
     var routes = [Route]()
+    var routeIDs = [Double]()
     
     // MARK: Archiving Paths
     
