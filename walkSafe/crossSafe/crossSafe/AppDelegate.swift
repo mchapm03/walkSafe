@@ -2,9 +2,6 @@
 //  AppDelegate.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/9/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
 
 import UIKit
 import CoreLocation

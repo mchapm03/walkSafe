@@ -2,11 +2,6 @@
 //  routeTableViewController.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/14/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
-
-
 
 import UIKit
 import Foundation
@@ -29,15 +24,9 @@ class routeTableViewController: UITableViewController {
     }
     func loadRoutes() {
         if kid != nil {
-//            if kid?.routes != nil{
-//                self.routes = (kid?.routes)!
-//            }
-            //TODO: load routeIDs and find all in database:
-//            if kid?.routeIDs != nil{
                 print("kid ids: \(kid?.routeIDs)")
                 for id in (kid?.routeIDs)! {
                     // TODO: get route from db:
-//                    print("\(id)")
                     var c1 = [CLLocationCoordinate2D]()
                     var i1 = [CLLocationCoordinate2D]()
                     var s1 = [CLLocationCoordinate2D]()

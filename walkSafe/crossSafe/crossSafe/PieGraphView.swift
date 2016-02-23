@@ -2,10 +2,6 @@
 //  PieGraphView.swift
 //  crossSafe
 //
-//  Created by Courtney Won on 2/20/16.
-//  Adapted from Ray Wenderlich - Core Graphics Tutorial
-//  Copyright © 2016 Tufts. All rights reserved.
-//
 
 import UIKit
 

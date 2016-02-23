@@ -2,10 +2,6 @@
 //  childViewController.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/9/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -22,10 +18,6 @@ class childViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        locationManager.delegate = self
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.startUpdatingLocation()
         
         // Get my location
         // TODO: make sure view animation is complete
@@ -78,23 +70,6 @@ class childViewController: UIViewController, CLLocationManagerDelegate {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-//    func createTestPolyLine(){
-//        let locations = [
-//            CLLocation(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude),
-//            //            CLLocation(latitude: 32.7767, longitude: -96.7970),         /* San Francisco, CA */
-//            //            CLLocation(latitude: 37.7833, longitude: -122.4167),        /* Dallas, TX */
-//            //            CLLocation(latitude: 42.2814, longitude: -83.7483),         /* Ann Arbor, MI */
-//            //            CLLocation(latitude: 32.7767, longitude: -96.7970),          /* San Francisco, CA */
-//            CLLocation(latitude: mapView.userLocation.coordinate.latitude, longitude: mapView.userLocation.coordinate.longitude),
-//        ]
-    
-//        var coordinates = locations.map({ (location: CLLocation!) -> CLLocationCoordinate2D in
-//            return location.coordinate
-//        })
-//        
-//        polyline = MKPolyline(coordinates: &coordinates, count: locations.count)
-        
-//    }
     func loadSampleIntersections() -> [CLLocationCoordinate2D]{
         var intersects = [CLLocationCoordinate2D]()
         intersects += [CLLocation(latitude: 32.7767, longitude: -96.7970).coordinate]
@@ -108,18 +83,15 @@ class childViewController: UIViewController, CLLocationManagerDelegate {
         return streets
     }
     func savePolyline() {
-        // TODO: send polyline to heroku with uuid
+        //  send polyline to heroku with uuid
         polyline = MKPolyline(coordinates: &coords, count: coords.count)
         
         
-            // TODO: send route. childID, routeID, polylines, intersectX, streetX
+            // send route. childID, routeID, polylines, intersectX, streetX
             if let url = NSURL(string: "https://walk-safe.herokuapp.com/addRoute"){
                 let session = NSURLSession.sharedSession() // use to get data
                 let request = NSMutableURLRequest(URL: url)
                 request.HTTPMethod = "POST"
-                //request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-//                let childID = UIDevice.currentDevice().identifierForVendor!.UUIDString
-//                let routeID = date?.description
                 let intersectX = loadSampleIntersections()
                 let streetX = loadSampleStreets()
                 let paramString = "childID=" + UIDevice.currentDevice().identifierForVendor!.UUIDString + "&routeID=" + String(date?.timeIntervalSince1970) + "&polylines=" + coords.description + "&intersectX=" + intersectX.description + "&streetX=" + streetX.description

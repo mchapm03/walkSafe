@@ -2,10 +2,6 @@
 //  kidStatistics.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/14/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
-
 import UIKit
 
 class KidStatistics {

@@ -2,8 +2,6 @@
 //  ConfirmKidViewController.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/15/16.
-//  Copyright © 2016 Tufts. All rights reserved.
 //
 
 import UIKit
@@ -18,14 +16,6 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var newCodeButton: UIButton!
     
     var kid: Kid?
-//    
-//    override func viewDidAppear(animated: Bool) {
-//        if let kid = self.kid {
-//            if kid.isConfirmed {
-//                performSegueWithIdentifier("showKidDetails", sender: self)
-//            }
-//        }
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +64,8 @@ class ConfirmKidViewController: UIViewController, UITextFieldDelegate {
     
     // confirm the kid
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //TODO: write code to confirm kid
+        //TODO: Confirm parent/kid pair via SMS and confirmation key
+        // For now, allow any code to confirm
         if submitButton === sender {
             let text = codeInput.text ?? ""
             if kid != nil{

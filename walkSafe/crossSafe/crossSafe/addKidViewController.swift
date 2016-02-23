@@ -2,9 +2,6 @@
 //  addKidViewController.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/10/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
 
 import UIKit
 import Foundation
@@ -49,8 +46,6 @@ class addKidViewController: UIViewController, UITextFieldDelegate {
     
     func checkValidInput() {
         let text = kidNameInput.text ?? ""
-        //let num = kidPhoneInput.text ?? ""
-       // let toint = Int(num.stringByReplacingOccurrencesOfString("-", withString: ""))
         saveButton.enabled = !(text.isEmpty)
     }
 
@@ -64,7 +59,8 @@ class addKidViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    // This method lets you configure a view controller before it's presented.
+    
+    // Go back to the kid list, and add the new kid to the parent's kid list
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
             let name = kidNameInput.text ?? ""

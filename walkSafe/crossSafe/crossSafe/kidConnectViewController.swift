@@ -2,9 +2,6 @@
 //  kidConnectViewController.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/18/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
 
 import UIKit
 
@@ -30,17 +27,19 @@ class kidConnectViewController: UIViewController {
     
     // MARK: - Navigation
     
-
+    // Add the kid to the db, and associate with uuid
     @IBAction func submit(sender: AnyObject) {
+        // check that name is not null:
         if kidName.text == "" {
             self.errorLabel.text = "Please Enter a Name."
-        }else {
+        }
+        else {
             let name = kidName.text
             if name != "" {
-                
+                // set the defaults in the phone so that the kid does not have to enter the next time
                 defaults.setObject(name, forKey: "MyName")
                 
-                // TODO: send name and uuid to heroku
+                // send name and uuid to heroku
                 if let url = NSURL(string: "https://walk-safe.herokuapp.com/addChild"){
                     let session = NSURLSession.sharedSession() // use to get data
                     let request = NSMutableURLRequest(URL: url)
@@ -76,6 +75,7 @@ class kidConnectViewController: UIViewController {
             
         }
     }
+    // After kid enters their name, send them to the routeViewController so they can start a walk
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "goStartWalk" {
              if kidName.text == "" {
@@ -84,12 +84,5 @@ class kidConnectViewController: UIViewController {
         }
         return true
     }
-
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//
-//    }
-
-    
     
 }

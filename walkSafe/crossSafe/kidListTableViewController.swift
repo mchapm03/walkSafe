@@ -2,9 +2,6 @@
 //  kidListTableViewController.swift
 //  crossSafe
 //
-//  Created by Margaret Chapman on 2/10/16.
-//  Copyright © 2016 Tufts. All rights reserved.
-//
 
 import UIKit
 import CoreLocation
@@ -27,7 +24,7 @@ class kidListTableViewController: UITableViewController {
             loadSampleKids()
         }
     }
-    // TODO: load real kids and their views. Incorporate NSData and Heroku server
+    
     func loadSampleKids() {
         kids += [Kid(name: "Johnny", phone: 8903873728)!]
         let kid1 = Kid(name: "Suzy")
@@ -35,6 +32,8 @@ class kidListTableViewController: UITableViewController {
         kid1?.routes = [Route(time:NSDate()), Route(time: NSDate(timeIntervalSinceNow: 398398))]
         kids += [kid1!]
     }
+    
+    
     func loadSampleRoute() -> Route {
         let date = NSDate(timeIntervalSince1970:(Double(String(NSDate().timeIntervalSince1970)))!)
         let inter: [CLLocationCoordinate2D] = []
@@ -64,7 +63,7 @@ class kidListTableViewController: UITableViewController {
         return kids.count
     }
 
-    
+    //configure kid cells
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "kidListTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! kidListTableViewCell
@@ -98,6 +97,7 @@ class kidListTableViewController: UITableViewController {
         }    
     }
     
+    // add new kid to parent's list
     @IBAction func unwindToKidList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? ConfirmKidViewController, kid = sourceViewController.kid {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -119,6 +119,7 @@ class kidListTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
+    // only show kid details if kid is confirmed
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if identifier == "showConfirmKid"{
             if let selectedKid = sender as? kidListTableViewCell{
@@ -133,7 +134,7 @@ class kidListTableViewController: UITableViewController {
         return true
     }
 
-    // TODO: add a segue to the confirm kid page if the kid.isConfirmed == false
+    // If kid isn't confirmed, go to confirm page, otherwise, go to kid details page
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
      
         if segue.identifier == "showConfirmKid" {
@@ -165,6 +166,7 @@ class kidListTableViewController: UITableViewController {
     
     //MARK: NSCoding
     
+    // Save kid in the parents persistent data store
     func saveKid() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(kids, toFile: Kid.ArchiveURL.path!)
         if !isSuccessfulSave {
@@ -172,6 +174,7 @@ class kidListTableViewController: UITableViewController {
         }
     }
     
+    // load all the parent's kids and their routeids
     func loadKids() -> [Kid]? {
         // Get kids from nscoder stored data
         if let myKids = NSKeyedUnarchiver.unarchiveObjectWithFile(Kid.ArchiveURL.path!) as? [Kid] {
